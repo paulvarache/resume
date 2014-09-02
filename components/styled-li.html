@@ -1,6 +1,11 @@
 <polymer-element name="styled-li" extends="li" attributes="level">
     <template>
         <style>
+            @media print {
+                :host .content:before {
+                    display: none;
+                }
+            }
             :host {
                 list-style: none;
                 padding-left: {{level*15}}px;
