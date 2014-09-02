@@ -1,11 +1,9 @@
 <polymer-element name="v-header" attributes="fullname src">
     <template>
         <style>
-            .personal-info {
+            #personalInfo {
                 padding: 20px;
-                padding-top: 20px;
                 border-left: 3px solid grey;
-                padding-bottom: 40px;
                 z-index: 100;
                 display: inline-block;
             }
@@ -49,7 +47,7 @@
             <template if="{{src !== ''}}">
                 <img src="{{src}}" alt="ME" flex self-end id="picture">
             </template>
-            <div class="personal-info marged">
+            <div class="marged" id="personalInfo">
                 <div id="name">{{fullname}}</div>
                 <div class="info-more" id="infos">
                     <content></content>
@@ -81,6 +79,9 @@
                     this.$.bar.style.height = i * 232 + "px";
                     this.$.bar.style.boxShadow = "0px 0px " + spread + "px 0px rgba(0,0,0,0.3)";
                     this.$.name.style.transform = "scale("+r+")";
+                    this.$.personalInfo.style.padding = (20 + o * 10) + "px";
+                    this.$.picture.style.top = (20 - o * 10) + "px";
+                    this.$.picture.style.right = (20 - o * 10) + "px";
                 }
             }
         });
