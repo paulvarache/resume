@@ -10,6 +10,7 @@
         <link rel="import" href="components/expandable-li.html">
         <link rel="import" href="components/expandable-ul.html">
         <link rel="import" href="components/skill-progress.html">
+        <link rel="import" href="components/v-header.html">
         <style>
             html, body {
                 width: 100%;
@@ -25,20 +26,6 @@
             h3 {
                 font-weight: 500;
             }
-            .personal-info {
-                border-left: 3px solid grey;
-                padding-bottom: 40px;
-            }
-            .personal-text {
-                padding: 20px;
-                padding-top: 0px;
-                padding-left: 0px;
-                background-color: #E5E5E5;
-                z-index: 2;
-            }
-            .personal-text>div {
-                padding-left: 20px;
-            }
             .marged {
                 margin-left: 10vw;
             }
@@ -53,35 +40,22 @@
                 color: black;
                 text-decoration: underline;
             }
-            .name {
-                padding-left: 15px !important;
-                margin-left: 5px;
-                position: fixed;
-                width: 100%;
-                background-color: #E5E5E5;
-                z-index: 100;
-                padding-top: 20px;
-                font-weight: bold;
-            }
-            .after-name {
-                padding-top: 40px;
+            .content {
+                margin-top: 232px;
             }
         </style>
     </head>
     <body unresolved>
-        <div layout vertical>
-            <div class="personal-info marged">
-                <div class="personal-text">
-                    <div class="name">Paul Varache</div>
-                    <div class="after-name">3 avenue de la pépinière</div>
-                    <div>94120 Fontenay-sous-Bois</div>
-                    <div>France</div>
-                    <div>06 95 50 43 61</div>
-                    <div><a href="mailto:pro@paulvarache.ninja">pro@paulvarache.ninja <core-icon icon="send"></core-icon></a></div>
-                    <div>20 years old</div>
-                    <div>Driving license</div>
-                </div>
-            </div>
+        <v-header fullname="Paul Varache">
+            <div>3 avenue de la pépinière</div>
+            <div>94120 Fontenay-sous-Bois</div>
+            <div>France</div>
+            <div>06 95 50 43 61</div>
+            <div><a href="mailto:pro@paulvarache.ninja">pro@paulvarache.ninja <core-icon icon="send"></core-icon></a></div>
+            <div>20 years old</div>
+            <div>Driving license</div>
+        </v-header>
+        <div class="content">
             <ul is="expandable-ul" class="marged list">
                 <li is="styled-li">
                     <h2>Professional objective</h2>
