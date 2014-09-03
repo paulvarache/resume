@@ -1,16 +1,12 @@
 <link rel="import" href="../vendor/paper-progress/paper-progress.html">
-<link rel="import" href="../vendor/core-icon/core-icon.html">
-<polymer-element name="skill-progress" attributes="title value src">
+<polymer-element name="skill-progress" attributes="vtitle vvalue vsrc" noscript>
     <template>
         <div layout horizontal center>
-            <core-icon src="{{src}}" style="margin-right: 5px"></core-icon>
+            <core-icon src="{{vsrc}}" style="margin-right: 5px"></core-icon>
             <div flex>
-                {{title}}
+                {{vtitle}}
             </div>
-            <paper-progress flex three value="{{value}}"></paper-progress>
+            <paper-progress flex three value="{{vvalue}}"></paper-progress>
         </div>
     </template>
-    <script>
-        Polymer('skill-progress');
-    </script>
 </polymer-element>

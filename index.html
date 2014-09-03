@@ -1,7 +1,7 @@
 <!DOCTYPE html5>
 <html>
     <head>
-        <meta chartset="UTF-8">
+        <meta charset="UTF-8">
         <title>Paul Varache - CV</title>
         <script src="vendor/platform/platform.js"></script>
         <link rel="import" href="vendor/polymer/polymer.html">
@@ -40,7 +40,7 @@
                 color: black;
                 text-decoration: underline;
             }
-            .content {
+            .main-content {
                 margin-top: 232px;
             }
         </style>
@@ -55,7 +55,7 @@
             <div>20 years old</div>
             <div>Driving license</div>
         </v-header>
-        <div class="content">
+        <div class="main-content">
             <ul is="expandable-ul" class="marged list">
                 <li is="styled-li">
                     <h2>Professional objective</h2>
@@ -156,47 +156,47 @@
                 </li>
                 <li is="expandable-li" title="Programming languages: Java, C/C++, C#, PHP, HTML5, CSS3, JavaScript" level="3">
                     <div layout vertical>
-                        <skill-progress title="Java" value="60" src="icon/Java.png"></skill-progress>
-                        <skill-progress title="C/C++" value="50" src="icon/cplusplus.png"></skill-progress>
-                        <skill-progress title="C#" value="55" src="icon/csharp.png"></skill-progress>
-                        <skill-progress title="PHP" value="79" src="icon/php.png"></skill-progress>
-                        <skill-progress title="HTML5" value="80" src="icon/html5.png"></skill-progress>
-                        <skill-progress title="CSS3" value="70" src="icon/css3.png"></skill-progress>
-                        <skill-progress title="JavaScript" value="90" src="icon/js.png"></skill-progress>
+                        <skill-progress vtitle="Java" vvalue="60" vsrc="icon/Java.png"></skill-progress>
+                        <skill-progress vtitle="C/C++" vvalue="50" vsrc="icon/cplusplus.png"></skill-progress>
+                        <skill-progress vtitle="C#" vvalue="55" vsrc="icon/csharp.png"></skill-progress>
+                        <skill-progress vtitle="PHP" vvalue="79" vsrc="icon/php.png"></skill-progress>
+                        <skill-progress vtitle="HTML5" vvalue="80" vsrc="icon/html5.png"></skill-progress>
+                        <skill-progress vtitle="CSS3" vvalue="70" vsrc="icon/css3.png"></skill-progress>
+                        <skill-progress vtitle="JavaScript" vvalue="90" vsrc="icon/js.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" title="Frameworks: J2EE, JSF, Qt, Symfony 2, Zend, Bootstrap 3, Express, Angular.js, Qooxdoo" level="3">
                     <div layout vertical>
-                        <skill-progress title="J2EE" value="40" src="icon/j2ee1.png"></skill-progress>
-                        <skill-progress title="JSF" value="40" src="icon/jsf.png"></skill-progress>
-                        <skill-progress title="Qt" value="65" src="icon/qt.png"></skill-progress>
-                        <skill-progress title="Symfony 2" value="75" src="icon/sf2.png"></skill-progress>
-                        <skill-progress title="Zend" value="50" src="icon/zend.png"></skill-progress>
-                        <skill-progress title="Bootstrap 3" value="90" src="icon/bootstrap.png"></skill-progress>
-                        <skill-progress title="Express" value="90" src="icon/express.png"></skill-progress>
-                        <skill-progress title="Angular.js" value="88" src="icon/angular.jpeg"></skill-progress>
-                        <skill-progress title="Qooxdoo" value="75" src="icon/qx.png"></skill-progress>
+                        <skill-progress vtitle="J2EE" vvalue="40" vsrc="icon/j2ee1.png"></skill-progress>
+                        <skill-progress vtitle="JSF" vvalue="40" vsrc="icon/jsf.png"></skill-progress>
+                        <skill-progress vtitle="Qt" vvalue="65" vsrc="icon/qt.png"></skill-progress>
+                        <skill-progress vtitle="Symfony 2" vvalue="75" vsrc="icon/sf2.png"></skill-progress>
+                        <skill-progress vtitle="Zend" vvalue="50" vsrc="icon/zend.png"></skill-progress>
+                        <skill-progress vtitle="Bootstrap 3" value="90" vsrc="icon/bootstrap.png"></skill-progress>
+                        <skill-progress vtitle="Express" vvalue="90" vsrc="icon/express.png"></skill-progress>
+                        <skill-progress vtitle="Angular.js" vvalue="88" vsrc="icon/angular.jpeg"></skill-progress>
+                        <skill-progress vtitle="Qooxdoo" vvalue="75" vsrc="icon/qx.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" title="Platforms/Libraries: Node.js, Highcharts, SugarCRM" level="3">
                     <div layout vertical>
-                        <skill-progress title="Node.js" value="85" src="icon/node.png"></skill-progress>
-                        <skill-progress title="Highcharts" value="80" src="icon/highcharts.png"></skill-progress>
-                        <skill-progress title="SugarCRM" value="70" src="icon/sugar.png"></skill-progress>
+                        <skill-progress vtitle="Node.js" vvalue="85" vsrc="icon/node.png"></skill-progress>
+                        <skill-progress vtitle="Highcharts" vvalue="80" vsrc="icon/highcharts.png"></skill-progress>
+                        <skill-progress vtitle="SugarCRM" vvalue="70" vsrc="icon/sugar.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" title="Databases: Oracle 10g, MySQL, MongoDB" level="3">
                     <div layout vertical>
-                        <skill-progress title="Oracle 10g" value="77" src="icon/10g.gif"></skill-progress>
-                        <skill-progress title="MySQL" value="75" src="icon/mysql.png"></skill-progress>
-                        <skill-progress title="MongoDB" value="75" src="icon/mongo.png"></skill-progress>
+                        <skill-progress vtitle="Oracle 10g" vvalue="77" vsrc="icon/10g.gif"></skill-progress>
+                        <skill-progress vtitle="MySQL" vvalue="75" vsrc="icon/mysql.png"></skill-progress>
+                        <skill-progress vtitle="MongoDB" vvalue="75" vsrc="icon/mongo.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" title="Operating systems: Linux, Mac OS, Windows" level="3">
                     <div layout vertical>
-                        <skill-progress title="Linux" value="75" src="icon/linux.gif"></skill-progress>
-                        <skill-progress title="Mac OS" value="70" src="icon/mac.png"></skill-progress>
-                        <skill-progress title="Windows" value="70" src="icon/windows.png"></skill-progress>
+                        <skill-progress vtitle="Linux" vvalue="75" vsrc="icon/linux.gif"></skill-progress>
+                        <skill-progress vtitle="Mac OS" vvalue="70" vsrc="icon/mac.png"></skill-progress>
+                        <skill-progress vtitle="Windows" vvalue="70" vsrc="icon/windows.png"></skill-progress>
                     </div>
                 </li>
                 <li is="styled-li" level="3">
@@ -204,15 +204,15 @@
                 </li>
                 <li is="expandable-li" title="Versioning: Git, SVN" level="3">
                     <div layout vertical>
-                        <skill-progress title="Git" value="70" src="icon/git.png"></skill-progress>
-                        <skill-progress title="SVN" value="50" src="icon/svn.png"></skill-progress>
+                        <skill-progress vtitle="Git" vvalue="70" vsrc="icon/git.png"></skill-progress>
+                        <skill-progress vtitle="SVN" vvalue="50" vsrc="icon/svn.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" title="Misc: Polymer, Talend, Android" level="3">
                     <div layout vertical>
-                        <skill-progress title="Polymer" src="icon/polymer1.png" value="60"></skill-progress>
-                        <skill-progress title="Talend" value="15" src="icon/talend.png"></skill-progress>
-                        <skill-progress title="Android" value="50" src="icon/android.png"></skill-progress>
+                        <skill-progress vtitle="Polymer" vsrc="icon/polymer1.png" vvalue="60"></skill-progress>
+                        <skill-progress vtitle="Talend" vvalue="15" vsrc="icon/talend.png"></skill-progress>
+                        <skill-progress vtitle="Android" vvalue="50" vsrc="icon/android.png"></skill-progress>
                     </div>
                 </li>
                 <li is="styled-li" level="2">

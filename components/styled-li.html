@@ -12,7 +12,7 @@
                 position: relative;
             }
             :host .content::before {
-                content: "";
+                content: " ";
                 position: absolute;
                 top: 50%;
                 margin-top: -7px;
@@ -29,7 +29,10 @@
     </template>
     <script>
         Polymer('styled-li', {
-            level: 1
+            level: 1,
+            domReady: function () {
+                this.$.content.paddingLeft = (this.level*15) + "px";
+            }
         });
     </script>
 </polymer-element>

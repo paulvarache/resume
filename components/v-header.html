@@ -1,7 +1,7 @@
 <polymer-element name="v-header" attributes="fullname src">
     <template>
         <style>
-            #personalInfo {
+            :host #personalInfo {
                 padding: 20px;
                 border-left: 3px solid grey;
                 z-index: 100;
@@ -21,6 +21,7 @@
             #name {
                 font-weight: bold;
                 transform-origin: 0% 50%;
+                -webkit-transform-origin: 0% 50%;
             }
             #bar {
                 position: fixed;
@@ -36,11 +37,13 @@
                 z-index: 100;
                 position: fixed;
                 transform-origin: 100% 0;
+                -webkit-transform-origin: 100% 0;
                 right: 20px;
                 top: 20px;
             }
             .info-more {
                 transform-origin: 0% 0%;
+                -webkit-transform-origin: 0% 0%;
             }
         </style>
         <div layout horizontal id="bar">
@@ -61,6 +64,12 @@
             src: "",
             fullname: "",
             domReady: function () {
+                //FF support
+                this.$.picture.style.height = (this.height - 20) + "px";
+                this.$.bar.style.height = this.height + "px";
+                // SAFARI
+                this.$.personalInfo.style.borderLeft = "3px solid grey";
+                this.$.personalInfo.style.padding = "20px";
                 document.addEventListener('scroll', this.scaleAll.bind(this), this);
             },
             scaleAll: function () {
@@ -73,12 +82,18 @@
                     var spread = o * 30;
                     if (this.$.picture) {
                         this.$.picture.style.transform = "scale("+d+")";
+                        // SAFARI
+                        this.$.picture.style.webkitTransform = "scale("+d+")";
                     }
                     this.$.infos.style.transform = "scale("+d+")";
+                    // SAFARI
+                    this.$.infos.style.webkitTransform = "scale("+d+")";
                     this.$.infos.style.opacity = d;
                     this.$.bar.style.height = i * 232 + "px";
                     this.$.bar.style.boxShadow = "0px 0px " + spread + "px 0px rgba(0,0,0,0.3)";
                     this.$.name.style.transform = "scale("+r+")";
+                    // SAFARI
+                    this.$.name.style.webkitTransform = "scale("+r+")";
                     this.$.personalInfo.style.padding = (20 + o * 10) + "px";
                     this.$.picture.style.top = (20 - o * 10) + "px";
                     this.$.picture.style.right = (20 - o * 10) + "px";
