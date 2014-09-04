@@ -1,0 +1,20 @@
+{
+  "name": "cv",
+  "version": "0.0.0",
+  "description": "My resume",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://paulvarache@bitbucket.org/paulvarache/resume.git"
+  },
+  "author": "Paul Varache <pro@paulvarache.ninja>",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-vulcanize": "^0.4.1"
+  }
+}

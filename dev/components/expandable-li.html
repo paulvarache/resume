@@ -1,0 +1,66 @@
+<link rel="import" href="expandable-more.html">
+<link rel="import" href="styled-li.html">
+<link rel="import" href="../../vendor/core-icons/core-icons.html">
+<polymer-element name="expandable-li" extends="styled-li" attributes="title">
+    <template>
+        <style>
+            @media print {
+                #icon {
+                    display: none;
+                }
+            }
+            :host .content {
+                transition: all linear 200ms;
+                display: block;
+            }
+            :host .content:hover {
+                padding-left: 3px;
+                cursor: pointer;
+            }
+            :host expandable-more {
+                margin-left: {{-15*level}}px;
+            }
+            :host {
+                list-style: none;
+                padding-left: {{level*15}}px;
+                position: relative;
+            }
+            :host .content::before {
+                content: " ";
+                position: absolute;
+                top: 50%;
+                margin-top: -7px;
+                left: -9px;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background-color: grey;
+            }
+        </style>
+        <div class="content" id="content">
+            {{title}} <core-icon icon="expand-{{open ? 'less' : 'more'}}" id="icon"></core-icon>
+        </div>
+        <expandable-more id="more">
+            <content></content>
+        </expandable-more>
+    </template>
+    <script>
+        Polymer('expandable-li', {
+            open: false,
+            title: null,
+            domReady: function () {
+                this.style.paddingLeft = (this.level * 15) + "px";
+                this.style.listStyle = "none";
+                this.$.content.addEventListener('click', this.toggle.bind(this), this);
+            },
+            toggle: function () {
+                if (this.open) {
+                    this.$.more.close();
+                } else {
+                    this.$.more.expand();
+                }
+                this.open = !this.open;
+            }
+        });
+    </script>
+</polymer-element>
