@@ -1,0 +1,18 @@
+<link rel="import" href="../../vendor/core-icon/core-icon.html">
+<polymer-element name="project-duration" attributes="duration">
+    <template>
+        <style>
+            :host {
+                vertical-align: middle;
+            }
+            :host .icon {
+                width: 1.3em;
+                height: 1.3em;
+            }
+        </style>
+        <core-icon icon="history" class="icon"></core-icon> {{duration}}
+    </template>
+    <script>
+        Polymer('project-duration');
+    </script>
+</polymer-element>

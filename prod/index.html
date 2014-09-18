@@ -1352,6 +1352,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div hidden><polymer-element name="expandable-more" assetpath="components/">
     <template>
         <style>
+            @media print {
+                :host .content:before {
+                    display: none;
+                }
+            }
             :host {
                 display: block;
                 overflow: hidden;
@@ -1399,7 +1404,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 padding-left: {{level*15}}px;
                 position: relative;
             }
-            :host .content::before {
+            /*:host .content::before {
                 content: " ";
                 position: absolute;
                 top: 50%;
@@ -1409,7 +1414,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 height: 14px;
                 border-radius: 50%;
                 background-color: grey;
-            }
+            }*/
         </style>
         <div class="content" id="content">
             <content></content>
@@ -1423,7 +1428,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </polymer-element>
 
 
-<polymer-element name="expandable-li" extends="styled-li" attributes="title" assetpath="components/">
+<polymer-element name="expandable-li" extends="styled-li" assetpath="components/">
     <template>
         <style>
             @media print {
@@ -1433,7 +1438,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
             :host .content {
                 transition: all linear 200ms;
-                display: block;
+                display: inline-block;
             }
             :host .content:hover {
                 padding-left: 3px;
@@ -1447,7 +1452,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 padding-left: {{level*15}}px;
                 position: relative;
             }
-            :host .content::before {
+            /*:host .content::before {
                 content: " ";
                 position: absolute;
                 top: 50%;
@@ -1457,12 +1462,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 height: 14px;
                 border-radius: 50%;
                 background-color: grey;
-            }
+            }*/
         </style>
         <div class="content" id="content">
-            {{title}} <core-icon icon="expand-{{open ? &apos;less&apos; : &apos;more&apos;}}" id="icon"></core-icon>
+            <content select="span.title" class="title"></content><core-icon icon="expand-{{open ? &apos;less&apos; : &apos;more&apos;}}" id="icon"></core-icon>
         </div>
         <expandable-more id="more">
+            <content select="div"></content>
             <content></content>
         </expandable-more>
     </template>
@@ -1865,6 +1871,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </script>
 </polymer-element>
 </div>
+        <div hidden>
+<polymer-element name="github-link" attributes="href" assetpath="components/">
+    <template>
+        <style>
+            :host .text {
+                display: inline-block;
+            }
+        </style>
+        <a href="https://github.com/{{href}}" target="_blank"><core-icon src="resources/icon/github.png"></core-icon></a>
+    </template>
+    <script>
+        Polymer('github-link', {
+
+        });
+    </script>
+</polymer-element>
+</div>
         <style>
             html, body {
                 width: 100%;
@@ -1898,10 +1921,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 margin-top: 232px;
                 height: 100%;
             }
+            .print-ref {
+                display: none;
+                position: absolute;
+                top: 519px;
+                left: 30px;
+                transform: rotate(-90deg);
+                -webkit-transform-origin: 0 0;
+                text-align: left;
+                z-index: 1000;
+            }
+            .underlined {
+                text-decoration: underline;
+            }
+            .bit-bold {
+                font-weight: 400;
+            }
+            @media print {
+                .print-ref {
+                    display: block;
+                }
+                .main-content, v-header::shadow #bar {
+                    margin-left: 50px;
+                }
+                v-header::shadow #picture {
+                    position: absolute !important;
+                    top: 20px !important;
+                    right: -100px !important;
+                    text-align: right !important;
+                    width: 150px !important;
+                    height: 150px !important;
+                }
+            }
         </style>
     </head>
     <body unresolved="">
-        <v-header fullname="Paul Varache" src="resources/picture.png">
+        <div class="print-ref">
+            A detailed version of my resume can be seen at <a class="underlined" href="http://resume.paulvarache.ninja">resume.paulvarache.ninja</a>
+        </div>
+        <v-header fullname="Paul Varache" src="resources/picture.png" class="infos">
             <div>3 avenue de la p&#xE9;pini&#xE8;re</div>
             <div>94120 Fontenay-sous-Bois</div>
             <div>France</div>
@@ -1909,6 +1967,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div><a href="mailto:pro@paulvarache.ninja">pro@paulvarache.ninja <core-icon icon="send"></core-icon></a></div>
             <div>20 years old</div>
             <div>Driving license</div>
+            <div>
+                <github-link href="paulvarache"></github-link>
+            </div>
         </v-header>
         <div class="main-content">
             <ul is="expandable-ul" class="marged list">
@@ -1924,14 +1985,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <li is="styled-li">
                     <h2>Education and certification</h2>
                 </li>
-                <li is="expandable-li" title="2013 - DUT Informatique (BTEC Higher National Diploma)" level="2">
-                    BTEC Higher National in computer sciences option software engeneering
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        2013 - &quot;DUT Informatique&quot; (BTEC Higher National Diploma)
+                    </span>
+                    <div>
+                        BTEC Higher National in computer sciences option software engeneering
+                    </div>
                 </li>
                 <li is="styled-li" level="2">
                     2012 - C2i (Computer and internet certificate intermediate)
                 </li>
-                <li is="expandable-li" title="2011 - Baccalaur&#xE9;at STI g&#xE9;nie &#xE9;lectronique mention bien (A level)" level="2">
-                    A level option industrial and technological sciences and more precisely electronics engeneering
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        2011 - &quot;Baccalaur&#xE9;at STI g&#xE9;nie &#xE9;lectronique&quot; (A level)
+                    </span>
+                    <div>
+                        A level option industrial and technological sciences and more precisely electronics engeneering
+                    </div>
                 </li>
                 <li is="styled-li">
                     <h2>Work experiences</h2>
@@ -1939,69 +2010,137 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <li is="styled-li" level="2">
                     <h3>September 2013 - now: Web consultant at Ysance, Paris (Permanent position)</h3>
                 </li>
-                <li is="expandable-li" level="3" title="External mission at Veolia (6 months)">
-                    Veolia is specialised in recycling, water delivery and energy solutions. I integrated the IT department team to
-                    help in the differents running projects. Our team&apos;s aim is to provide real-time data to help the decision making
-                    (for more informations see the <a href="resources/veolia_sf.pdf" target="_blank">2014 OSISoft user conference presentation</a>).
-                    As soon as I was confortable with the technical environment, I was asked to develop a data visualisation web tool (called DataViz)
-                    with HTML and Javascript.
-                    This tool gives access to the sensors&apos;, factories&apos; and water testing laboratories&apos; data and display them in a
-                    useful way using charts and tables. This project was developed with the Qooxdoo JavaScript framework and the Highcharts library.
-                    Along with the DataViz project I completed minor tasks like developing small console software in C# and making some Office&apos;s Excel reports
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">External mission at Veolia</span> [Qooxdoo, C#] (7 months)
+                    </span>
+                    <div>
+                        Veolia is specialised in recycling, water delivery and energy solutions. I integrated the IT department team to
+                        help in the differents running projects. Our team&apos;s aim is to provide real-time data to help the decision making
+                        (for more informations see the <a href="resources/veolia_sf.pdf" target="_blank">2014 OSISoft user conference presentation</a>).
+                        As soon as I was confortable with the technical environment, I was asked to develop a data visualisation web tool (called DataViz)
+                        with HTML and Javascript.
+                        This tool gives access to the sensors&apos;, factories&apos; and water testing laboratories&apos; data and display them in a
+                        useful way using charts and tables. This project was developed with the Qooxdoo JavaScript framework and the Highcharts library.
+                        Along with the DataViz project I completed minor tasks like developing small console software in C# and making some Office&apos;s Excel reports
+                    </div>
                 </li>
-                <li is="expandable-li" level="3" title="Intern web service with Node.js (1 week)">
-                    My task was to develop a web service for the RH department that automatically transfered the company applicants forms,
-                    from the web job advertisements to the internal RH software.
-                    This project gave me the opportunity to use a platform in which I am really interested in: Node.js.
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Intern web service</span> [Node.js] (1 week)
+                    </span>
+                    <div>
+                        My task was to develop a web service for the RH department that automatically transfered the company applicants forms,
+                        from the web job advertisements to the internal RH software.
+                        This project gave me the opportunity to use a platform in which I am really interested in: Node.js.
+                    </div>
                 </li>
-                <li is="expandable-li" level="3" title="SugarCRM project for Laposte (Main French postal service) (3 months)">
-                    Like for the Alloresto project (see below), I had to resolve cases to respond to the clients needs.
-                    Since the SugarCRM application had already been customized previously, I had to understand and modify a lot
-                    of my collegues work.
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Laposte CRM (Main French postal service)</span> [SugarCRM] (3 months)
+                    </span>
+                    <div>
+                        Like for the Alloresto project (see below), I had to resolve cases to respond to the clients needs.
+                        Since the SugarCRM application had already been customized previously, I had to understand and modify a lot
+                        of my collegues work.
+                    </div>
                 </li>
-                <li is="expandable-li" level="3" title="SugarCRM project for Alloresto.fr (Justeat.co.uk) (2 months)">
-                    In this project I learnt to install, customize and deploy a SugarCRM application in a SAAS environment.
-                    I was assigned cases openned by the client, asking many customization for their SugarCRM
-                    application so it can respond to their needs.
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Alloresto.fr CRM (Justeat.co.uk)</span> [SugarCRM] (2 months)
+                    </span>
+                    <div>
+                        In this project I learnt to install, customize and deploy a SugarCRM application in a SAAS environment.
+                        I was assigned cases openned by the client, asking many customization for their SugarCRM
+                        application so it can respond to their needs.
+                    </div>
                 </li>
-                <li is="expandable-li" level="3" title="Integration project using Zend and Git (1 month)">
-                    When I arrived at Ysance, a little integration project was given to me, to teach me how to use a framework like Zend
-                    following the company&apos;s practices inside a project. This is how I learnt to use versioning with Git with a project management
-                    application (in this case Redmine).
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Integration project</span> [Zend, Git] (1 month)
+                    </span>
+                    <div>
+                        When I arrived at Ysance, a little integration project was given to me, to teach me how to use a framework like Zend
+                        following the company&apos;s practices inside a project. This is how I learnt to use versioning with Git with a project management
+                        application (in this case Redmine).
+                    </div>
                 </li>
                 <li is="styled-li" level="2">
                     <h3>April 2013 - July 2013: Web developer at Aldisa, Paris (Internship)</h3>
                 </li>
-                <li is="expandable-li" level="3" title="Development from scratch of a CRM with PHP, MySQL, HTML, CSS and JavaScript (10 weeks)">
-                    During this internship I conceived and developed a CRM for IT asset management company.
-                    I designed the Data model and developed a back-end and front-end application that is currently used by the IT consultants
-                    to manage the cases openned by clients. This application includes also a report generator and a calendar.
-                    This internship that was my first profesionnal experience taught me a lot about web application development and
-                    relationship with the users.
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Development from scratch of a CRM</span> [PHP, MySQL, HTML, CSS, JavaScript] (10 weeks)
+                    </span>
+                    <div>
+                        During this internship I conceived and developed a CRM for IT asset management company.
+                        I designed the Data model and developed a back-end and front-end application that is currently used by the IT consultants
+                        to manage the cases openned by clients. This application includes also a report generator and a calendar.
+                        This internship that was my first profesionnal experience taught me a lot about web application development and
+                        relationship with the users.
+                    </div>
                 </li>
                 <li is="styled-li" style="page-break-before: always;">
-                    <h2>Additional experiences</h2>
+                    <h2>Additional experiences (Side projects)</h2>
                 </li>
-                <li is="expandable-li" level="2" title="JavaScript teaching (since May, on personal time)">
-                    I teach since May how to develop applications with the MEAN stack.
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        <span class="bit-bold">PiTimelapse</span> [Raspberry Pi, Node.js, socket.io, Angular.js, Polymer]
+                    </span>
+                    <div>
+                        My first project on the Raspberry Pi is a camera controller, that can take a picture every X seconds for a long time. After
+                        editing, a nice timelapse video is created. Every camera and timelapse settings are available on a webclient.
+                        Furthermore, variations of brightness on the photos are detected and corrected by changing the camera settings.
+                        <br>
+                        Sources here: <github-link href="PiTimelapse"></github-link>
+                    </div>
                 </li>
-                <li is="expandable-li" level="2" title="Personal project: Chez Philibert (3 weeks on personal time)">
-                    Two friends of mine runs a restaurant in Paris called Chez Philibert. To expand their popularity, I made them a website
-                    where you can see the products and the opening hours, <a href="http://chezphilibert.com" target="_blank">chezphilibert.com</a>.
-                    Then, using the MEAN stack, I developed an online ordering website, a web order management application and an Android application for
-                    the delivery person. These three application uses the same data stored in a MongoDB database and accesible via a Node.js &amp;
-                    Express API. With this project I learnt to use the Angular.js framework for front-end development and modules like routing,
-                    animation or drag-n-drop. The customer application is accesible here:
-                    <a href="http://chezphilibert.com/#/commander" target="_blank">chezphilibert.com/commander</a>
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        <span class="bit-bold">This resume</span> [Polymer]
+                    </span>
+                    <div>
+                        This resume was made using Polymer providing nice web components utilisation.
+                        Thanks to some css rules, it can easily be printed in a nice way and thus, exported in a PDF format.
+                        <br>
+                        Sources here: <github-link href="paulvarache/resume"></github-link>
+                    </div>
                 </li>
-                <li is="expandable-li" level="2" title="Personal project: Node &#xE0; la joie (1 month on personal time)">
-                    Just after learning how to use Node.js I started a little personal project to put into practice this new technology.
-                    It&apos;s a simple online music quiz. There is a room and a playlist management. Each player in the same room can hear
-                    the same portion of a music at the same time thanks to the socket.io module. The first plyer to find the song title (or an approximation)
-                    score a point, until the end of the playlist.
-                    With this project I learnt to use the Express framework and to install, manage and use a MongoDB database with Node.js.
-                    I also learnt to deploy an application on the heroku platform with Git.
-                    You can try it yourself at <a href="http://nodealajoie.herokuapp.com" target="_blank">nodealajoie.herokuapp.com</a>.
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        <span class="bit-bold">JavaScript teaching</span>
+                    </span>
+                    <div>
+                        I teach since May how to develop applications with the MEAN stack.
+                    </div>
+                </li>
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        <span class="bit-bold">Chez Philibert</span> [Node.js, Express, MongoDB, Angular.js, Android]
+                    </span>
+                    <div>
+                        Two friends of mine runs a restaurant in Paris called Chez Philibert. To expand their popularity, I made them a website
+                        where you can see the products and the opening hours, <a href="http://chezphilibert.com" target="_blank">chezphilibert.com</a>.
+                        Then, using the MEAN stack, I developed an online ordering website, a web order management application and an Android application for
+                        the delivery person. These three application uses the same data stored in a MongoDB database and accesible via a Node.js &amp;
+                        Express API. With this project I learnt to use the Angular.js framework for front-end development and modules like routing,
+                        animation or drag-n-drop. The customer application is accesible here:
+                        <a href="http://chezphilibert.com/#/commander" target="_blank">chezphilibert.com/commander</a>
+                    </div>
+                </li>
+                <li is="expandable-li" level="2">
+                    <span class="title">
+                        <span class="bit-bold">Node &#xE0; la joie</span> [Node.js, Express, MongoDB, socket.io]
+                    </span>
+                    <div>
+                        Just after learning how to use Node.js I started a little personal project to put into practice this new technology.
+                        It&apos;s a simple online music quiz. There is a room and a playlist management. Each player in the same room can hear
+                        the same portion of a music at the same time thanks to the socket.io module. The first plyer to find the song title (or an approximation)
+                        score a point, until the end of the playlist.
+                        With this project I learnt to use the Express framework and to install, manage and use a MongoDB database with Node.js.
+                        I also learnt to deploy an application on the heroku platform with Git.
+                        You can try it yourself at <a href="http://nodealajoie.herokuapp.com" target="_blank">nodealajoie.herokuapp.com</a>.
+                    </div>
                 </li>
                 <li is="styled-li">
                     <h2>Skills</h2>
@@ -2009,7 +2148,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <li is="styled-li" level="2">
                     <h3>Computer sciences</h3>
                 </li>
-                <li is="expandable-li" title="Programming languages: Java, C/C++, C#, PHP, HTML5, CSS3, JavaScript" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Programming languages:</span> Java, C/C++, C#, PHP, HTML5, CSS3, JavaScript
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Java" vvalue="60" vsrc="resources/icon/Java.png"></skill-progress>
                         <skill-progress vtitle="C/C++" vvalue="50" vsrc="resources/icon/cplusplus.png"></skill-progress>
@@ -2020,7 +2162,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <skill-progress vtitle="JavaScript" vvalue="90" vsrc="resources/icon/js.png"></skill-progress>
                     </div>
                 </li>
-                <li is="expandable-li" title="Frameworks: J2EE, JSF, Qt, Symfony 2, Zend, Bootstrap 3, Express, Angular.js, Qooxdoo" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Frameworks:</span> J2EE, JSF, Qt, Symfony 2, Zend, Bootstrap 3, Express, Angular.js, Qooxdoo
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="J2EE" vvalue="40" vsrc="resources/icon/j2ee1.png"></skill-progress>
                         <skill-progress vtitle="JSF" vvalue="40" vsrc="resources/icon/jsf.png"></skill-progress>
@@ -2033,21 +2178,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <skill-progress vtitle="Qooxdoo" vvalue="75" vsrc="resources/icon/qx.png"></skill-progress>
                     </div>
                 </li>
-                <li is="expandable-li" title="Platforms/Libraries: Node.js, Highcharts, SugarCRM" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Platforms/Libraries:</span> Node.js, Grunt, Highcharts, SugarCRM
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Node.js" vvalue="85" vsrc="resources/icon/node.png"></skill-progress>
+                        <skill-progress vtitle="Grunt" vvalue="55" vsrc="resources/icon/grunt.png"></skill-progress>
                         <skill-progress vtitle="Highcharts" vvalue="80" vsrc="resources/icon/highcharts.png"></skill-progress>
                         <skill-progress vtitle="SugarCRM" vvalue="70" vsrc="resources/icon/sugar.png"></skill-progress>
                     </div>
                 </li>
-                <li is="expandable-li" title="Databases: Oracle 10g, MySQL, MongoDB" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Databases:</span> Oracle 10g, MySQL, MongoDB
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Oracle 10g" vvalue="77" vsrc="resources/icon/10g.gif"></skill-progress>
                         <skill-progress vtitle="MySQL" vvalue="75" vsrc="resources/icon/mysql.png"></skill-progress>
                         <skill-progress vtitle="MongoDB" vvalue="75" vsrc="resources/icon/mongo.png"></skill-progress>
                     </div>
                 </li>
-                <li is="expandable-li" title="Operating systems: Linux, Mac OS, Windows" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Operating systems:</span> Linux, Mac OS, Windows
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Linux" vvalue="75" vsrc="resources/icon/linux.gif"></skill-progress>
                         <skill-progress vtitle="Mac OS" vvalue="70" vsrc="resources/icon/mac.png"></skill-progress>
@@ -2055,15 +2210,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </li>
                 <li is="styled-li" level="3">
-                    Data formats: JSON, XML, YAML
+                    <span class="bit-bold">Data formats:</span> JSON, XML, YAML
                 </li>
-                <li is="expandable-li" title="Versioning: Git, SVN" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Versioning:</span> Git, SVN
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Git" vvalue="70" vsrc="resources/icon/git.png"></skill-progress>
                         <skill-progress vtitle="SVN" vvalue="50" vsrc="resources/icon/svn.png"></skill-progress>
                     </div>
                 </li>
-                <li is="expandable-li" title="Misc: Polymer, Talend, Android" level="3">
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Misc:</span> Polymer, Talend, Android
+                    </span>
                     <div layout="" vertical="">
                         <skill-progress vtitle="Polymer" vsrc="resources/icon/polymer1.png" vvalue="60"></skill-progress>
                         <skill-progress vtitle="Talend" vvalue="15" vsrc="resources/icon/talend.png"></skill-progress>

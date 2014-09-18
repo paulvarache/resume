@@ -1,0 +1,16 @@
+<link rel="import" href="../../vendor/core-icon/core-icon.html">
+<polymer-element name="github-link" attributes="href">
+    <template>
+        <style>
+            :host .text {
+                display: inline-block;
+            }
+        </style>
+        <a href="https://github.com/{{href}}" target="_blank"><core-icon src="../resources/icon/github.png"></core-icon></a>
+    </template>
+    <script>
+        Polymer('github-link', {
+
+        });
+    </script>
+</polymer-element>

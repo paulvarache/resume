@@ -1,7 +1,7 @@
 <link rel="import" href="expandable-more.html">
 <link rel="import" href="styled-li.html">
 <link rel="import" href="../../vendor/core-icons/core-icons.html">
-<polymer-element name="expandable-li" extends="styled-li" attributes="title">
+<polymer-element name="expandable-li" extends="styled-li">
     <template>
         <style>
             @media print {
@@ -11,7 +11,7 @@
             }
             :host .content {
                 transition: all linear 200ms;
-                display: block;
+                display: inline-block;
             }
             :host .content:hover {
                 padding-left: 3px;
@@ -25,7 +25,7 @@
                 padding-left: {{level*15}}px;
                 position: relative;
             }
-            :host .content::before {
+            /*:host .content::before {
                 content: " ";
                 position: absolute;
                 top: 50%;
@@ -35,12 +35,13 @@
                 height: 14px;
                 border-radius: 50%;
                 background-color: grey;
-            }
+            }*/
         </style>
         <div class="content" id="content">
-            {{title}} <core-icon icon="expand-{{open ? 'less' : 'more'}}" id="icon"></core-icon>
+            <content select="span.title" class="title"></content><core-icon icon="expand-{{open ? 'less' : 'more'}}" id="icon"></core-icon>
         </div>
         <expandable-more id="more">
+            <content select="div"></content>
             <content></content>
         </expandable-more>
     </template>
