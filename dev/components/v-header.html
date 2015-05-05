@@ -7,6 +7,14 @@
                 z-index: 100;
                 display: inline-block;
             }
+            :host #over-color {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: #FBFBFB;
+            }
             .marged {
                 margin-left: 10vw;
             }
@@ -19,7 +27,8 @@
                 text-decoration: underline;
             }
             #name {
-                font-weight: bold;
+                font-weight: 300;
+                font-size: 1.2em;
                 transform-origin: 0% 50%;
                 -webkit-transform-origin: 0% 50%;
             }
@@ -29,7 +38,7 @@
                 right: 0;
                 left: 0;
                 height: {{height}}px;
-                background-color: #E5E5E5;
+                background-color: #FEF1CC;
                 z-index: 50;
             }
             #picture {
@@ -47,6 +56,7 @@
             }
         </style>
         <div layout horizontal id="bar">
+            <div id="over-color"></div>
             <template if="{{src !== ''}}">
                 <img src="{{src}}" alt="ME" flex self-end id="picture">
             </template>
@@ -70,7 +80,9 @@
                 // SAFARI
                 this.$.personalInfo.style.borderLeft = "3px solid grey";
                 this.$.personalInfo.style.padding = "20px";
-                document.addEventListener('scroll', this.scaleAll.bind(this), this);
+                document.addEventListener('scroll', (function () {
+                    requestAnimationFrame(this.scaleAll.bind(this));
+                }).bind(this), this);
                 this.scaleAll();
             },
             scaleAll: function () {
@@ -91,7 +103,7 @@
                 this.$.infos.style.transform = "scale("+d+")";
                 // SAFARI
                 this.$.infos.style.webkitTransform = "scale("+d+")";
-                this.$.infos.style.opacity = d;
+                this.$.infos.style.opacity = p;
                 this.$.bar.style.height = i * 232 + "px";
                 this.$.bar.style.boxShadow = "0px 0px " + spread + "px 0px rgba(0,0,0,0.3)";
                 this.$.name.style.transform = "scale("+r+")";
@@ -100,6 +112,8 @@
                 this.$.personalInfo.style.padding = (20 + o * 10) + "px";
                 this.$.picture.style.top = (20 - o * 10) + "px";
                 this.$.picture.style.right = (20 - o * 10) + "px";
+                this.$.personalInfo.style.borderLeftColor = "rgba(128, 128, 128, " + p + ")";
+                this.$['over-color'].style.opacity = p;
             }
         });
     </script>

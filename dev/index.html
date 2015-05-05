@@ -18,7 +18,7 @@
                 height: 100%;
                 margin: 0;
                 font-weight: 300;
-                background-color: #E5E5E5;
+                background-color: #FBFBFB;
                 font-family: 'RobotoDraft', sans-serif;
             }
             h2 {
@@ -77,26 +77,29 @@
                     height: 150px !important;
                 }
             }
+            skill-progress {
+                margin: 3px;
+            }
         </style>
     </head>
     <body unresolved>
         <div class="print-ref">
             A detailed version of my resume can be seen at <a class="underlined" href="http://resume.paulvarache.ninja">resume.paulvarache.ninja</a>
         </div>
-        <v-header fullname="Paul Varache" src="resources/picture.png" class="infos">
+        <v-header fullname="Paul Varache" src="resources/profile.jpg" class="infos">
             <div>3 avenue de la pépinière</div>
             <div>94120 Fontenay-sous-Bois</div>
             <div>France</div>
             <div>06 95 50 43 61</div>
             <div><a href="mailto:pro@paulvarache.ninja">pro@paulvarache.ninja <core-icon icon="send"></core-icon></a></div>
-            <div>20 years old</div>
+            <div>21 years old</div>
             <div>Driving license</div>
             <div>
                 <github-link href="paulvarache"></github-link>
             </div>
         </v-header>
         <div class="main-content">
-            <ul is="expandable-ul" class="marged list">
+            <ul is="expandable-ul" class="marged list" style="padding-top: 10px">
                 <li is="styled-li">
                     <h2>Professional objective</h2>
                 </li>
@@ -133,6 +136,15 @@
                 </li>
                 <li is="styled-li" level="2">
                     <h3>September 2013 - now: Web consultant at Ysance, Paris (Permanent position)</h3>
+                </li>
+                <li is="expandable-li" level="3">
+                    <span class="title">
+                        <span class="bit-bold">Digital Data Factory</span> [Node.js, Redis] (on-going)
+                    </span>
+                    <div>
+                    The Digital Data Factory systematically collects, organizes, reconciles and activates your multi-source digital data: Web, Stores, Mobile Devices, Social Media, etc.
+                    I was in charge of the development of an API in Node.js that manages data in a Redis database. During this project I learnt to use Vagrant to have a development environment as close as the production as possible. I used Puppet and Hiera to configure and scale the servers that I needed in the cloud.
+                    </div>
                 </li>
                 <li is="expandable-li" level="3">
                     <span class="title">
@@ -315,12 +327,13 @@
                 </li>
                 <li is="expandable-li" level="3">
                     <span class="title">
-                        <span class="bit-bold">Databases:</span> Oracle 10g, MySQL, MongoDB
+                        <span class="bit-bold">Databases:</span> Oracle 10g, MySQL, MongoDB, Redis
                     </span>
                     <div layout vertical>
                         <skill-progress vtitle="Oracle 10g" vvalue="77" vsrc="resources/icon/10g.gif"></skill-progress>
                         <skill-progress vtitle="MySQL" vvalue="75" vsrc="resources/icon/mysql.png"></skill-progress>
-                        <skill-progress vtitle="MongoDB" vvalue="75" vsrc="resources/icon/mongo.png"></skill-progress>
+                        <skill-progress vtitle="MongoDB" vvalue="77" vsrc="resources/icon/mongo.png"></skill-progress>
+                        <skill-progress vtitle="Redis" vvalue="80" vsrc="resources/icon/redis.png"></skill-progress>
                     </div>
                 </li>
                 <li is="expandable-li" level="3">
@@ -347,12 +360,14 @@
                 </li>
                 <li is="expandable-li" level="3">
                     <span class="title">
-                        <span class="bit-bold">Misc:</span> Polymer, Talend, Android
+                        <span class="bit-bold">Misc:</span> Polymer, Talend, Android, Vagrant, Puppet, Hiera
                     </span>
                     <div layout vertical>
                         <skill-progress vtitle="Polymer" vsrc="resources/icon/polymer1.png" vvalue="60"></skill-progress>
                         <skill-progress vtitle="Talend" vvalue="15" vsrc="resources/icon/talend.png"></skill-progress>
                         <skill-progress vtitle="Android" vvalue="50" vsrc="resources/icon/android.png"></skill-progress>
+                        <skill-progress vtitle="Vagrant" vvalue="50" vsrc="resources/icon/vagrant.png"></skill-progress>
+                        <skill-progress vtitle="Puppet, Hiera" vvalue="65" vsrc="resources/icon/puppet.png"></skill-progress>
                     </div>
                 </li>
                 <li is="styled-li" level="2">
